@@ -1,6 +1,6 @@
 import { Phone } from 'lucide-react';
 import { Button } from './ui/button';
-import logoImage from 'figma:asset/1e634da90e99b7120d179edc9e040fa5ecd31cdb.png';
+import logoImage from '@/assets/1e634da90e99b7120d179edc9e040fa5ecd31cdb.png';
 
 export function Header() {
   return (
