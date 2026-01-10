@@ -1,25 +1,65 @@
-import { Music, Route, Lightbulb, Globe } from 'lucide-react';
+import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
 
 const services = [
   {
+    icon: Sparkles,
+    title: 'Original Idea',
+    description: (
+      <>
+        아이디어를 '될 것'으로 만듭니다
+        <br />
+        콘텐츠, 공연, 관광, 플랫폼을 넘나드는
+        <br />
+        CRE8BARA만의 오리지널 기획과 세계관 설계로
+        <br />
+        없던 시장을 처음부터 만듭니다.
+      </>
+    ),
+  },
+  {
     icon: Music,
-    title: '공연 커머스',
-    description: '공연과 엔터테인먼트를 새로운 커머스 경험으로 전환합니다',
+    title: 'Performance Commerce',
+    description: (
+      <>
+        공연이 끝나도 경험은 계속됩니다
+        <br />
+        공연·팬미팅·페스티벌을
+        <br />
+        굿즈, 티켓, 데이터, 구독으로 확장하는
+        <br />
+        공연 기반 커머스 모델을 설계합니다.
+      </>
+    ),
   },
   {
     icon: Route,
-    title: '러닝 관광',
-    description: '러닝을 통해 지역을 탐험하는 새로운 관광 콘텐츠를 제공합니다',
+    title: 'Run & Tourism Contents',
+    description: (
+      <>
+        달리면, 도시가 콘텐츠가 됩니다
+        <br />
+        러닝을 이벤트가 아닌 여행으로,
+        <br />
+        지역을 무대 삼은 러닝 × 관광 × 축제 콘텐츠로
+        <br />
+        사람과 도시를 연결합니다.
+      </>
+    ),
   },
   {
-    icon: Lightbulb,
-    title: '콘텐츠 창작',
-    description: '창의적인 아이디어로 새로운 가치를 만들어갑니다',
-  },
-  {
-    icon: Globe,
-    title: '플랫폼 연결',
-    description: '다양한 산업을 연결하는 혁신적인 플랫폼을 구축합니다',
+    icon: BarChart3,
+    title: 'Platform & Data Strategy',
+    description: (
+      <>
+        팬과 데이터가 다음 콘텐츠를 만듭니다
+        <br />
+        티켓, 참여, 이동, 소비 데이터를 기반으로
+        <br />
+        콘텐츠를 예측하고 확장하는
+        <br />
+        플랫폼·데이터 중심 전략을 만듭니다.
+      </>
+    ),
   },
 ];
 
@@ -43,8 +83,8 @@ export function ServicesSection() {
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
                 <service.icon className="w-6 h-6 text-orange-500" />
               </div>
-              <h3 className="text-xl mb-3">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
+              <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+              <div className="text-gray-600 leading-relaxed">{service.description}</div>
             </div>
           ))}
         </div>
