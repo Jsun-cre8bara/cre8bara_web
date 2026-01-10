@@ -54,7 +54,11 @@ export function ContactForm() {
         // 폼 초기화
         setFormData({ category: '', name: '', email: '', phone: '', message: '' });
       } else {
-        toast.error(data.error || '오류가 발생했습니다. 다시 시도해주세요.');
+        // 더 구체적인 에러 메시지 표시
+        const errorMsg = data.error || '오류가 발생했습니다. 다시 시도해주세요.';
+        const detailsMsg = data.details ? `\n상세: ${data.details}` : '';
+        toast.error(errorMsg + detailsMsg);
+        console.error('API Error:', data);
       }
     } catch (error: any) {
       console.error('Submit error:', error);

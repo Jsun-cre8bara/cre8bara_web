@@ -70,9 +70,23 @@ export default async function handler(
 
     if (dbError) {
       console.error('Database error:', dbError);
+      
+      // 더 구체적인 에러 메시지 제공
+      let errorMessage = '데이터 저장 중 오류가 발생했습니다.';
+      
+      if (dbError.code === 'PGRST116' || dbError.message?.includes('relation') || dbError.message?.includes('does not exist')) {
+        errorMessage = 'Supabase 테이블이 생성되지 않았습니다. SQL Editor에서 테이블을 생성해주세요.';
+      } else if (dbError.code === '42501' || dbError.message?.includes('permission') || dbError.message?.includes('policy')) {
+        errorMessage = 'Supabase RLS 정책 오류입니다. 서비스 역할 키 접근 권한을 확인해주세요.';
+      } else if (dbError.message) {
+        errorMessage = `데이터베이스 오류: ${dbError.message}`;
+      }
+      
       return res.status(500).json({ 
-        error: '데이터 저장 중 오류가 발생했습니다.',
-        details: dbError.message 
+        error: errorMessage,
+        details: dbError.message,
+        code: dbError.code,
+        hint: dbError.hint
       });
     }
 
