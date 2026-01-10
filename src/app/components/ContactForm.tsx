@@ -28,7 +28,10 @@ export function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      // 프로덕션 환경에서는 상대 경로, 개발 환경에서는 절대 경로 또는 프록시 사용
+      const apiUrl = '/api/contact';
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +39,15 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      // 응답이 JSON이 아닌 경우 처리
+      let data;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(`서버 응답 오류: ${text || response.statusText}`);
+      }
 
       if (response.ok) {
         toast.success('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
@@ -45,9 +56,17 @@ export function ContactForm() {
       } else {
         toast.error(data.error || '오류가 발생했습니다. 다시 시도해주세요.');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Submit error:', error);
-      toast.error('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      
+      // 더 구체적인 에러 메시지
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        toast.error('API 서버에 연결할 수 없습니다. 배포 환경에서만 작동합니다.');
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
     } finally {
       setIsSubmitting(false);
     }
