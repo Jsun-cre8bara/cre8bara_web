@@ -79,7 +79,7 @@ export default async function handler(
     // 2. 관리자에게 이메일 발송 (Resend가 설정된 경우에만)
     if (resend) {
       try {
-        const adminEmail = process.env.ADMIN_EMAIL || 'Cre8bara@gmail.com';
+        const adminEmail = process.env.ADMIN_EMAIL || 'cre8bara@gmail.com';
         
         const emailBody = `
 새로운 문의가 접수되었습니다.

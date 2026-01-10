@@ -52,7 +52,7 @@ Vercel 대시보드에서 다음 환경변수를 추가하세요:
    - `SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY`
    - `RESEND_API_KEY`
-   - `ADMIN_EMAIL` (선택사항, 기본값: Cre8bara@gmail.com)
+   - `ADMIN_EMAIL` (선택사항, 기본값: cre8bara@gmail.com)
 4. 모든 환경(Production, Preview, Development)에 적용
 
 ### 4. 로컬 개발 환경 설정
@@ -63,7 +63,7 @@ Vercel 대시보드에서 다음 환경변수를 추가하세요:
 SUPABASE_URL=your_supabase_project_url
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 RESEND_API_KEY=your_resend_api_key
-ADMIN_EMAIL=Cre8bara@gmail.com
+ADMIN_EMAIL=cre8bara@gmail.com
 ```
 
 ⚠️ `.env.local`은 `.gitignore`에 포함되어 있어 Git에 커밋되지 않습니다.
