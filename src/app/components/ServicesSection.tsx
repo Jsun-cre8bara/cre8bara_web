@@ -1,4 +1,5 @@
 import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const services = [
   {
@@ -64,6 +65,8 @@ const services = [
 ];
 
 export function ServicesSection() {
+  const navigate = useNavigate();
+
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,7 +87,18 @@ export function ServicesSection() {
                 <service.icon className="w-6 h-6 text-orange-500" />
               </div>
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <div className="text-gray-600 leading-relaxed">{service.description}</div>
+              <div className="text-gray-600 leading-relaxed mb-4">{service.description}</div>
+              
+              {/* Run & Tourism Contents 섹션에만 버튼 추가 */}
+              {service.title === 'Run & Tourism Contents' && (
+                <button
+                  onClick={() => navigate('/funrunning')}
+                  className="w-full mt-4 px-4 py-3 bg-white border-2 border-orange-500 text-orange-500 rounded-lg font-medium hover:bg-orange-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <Route className="w-5 h-5" />
+                  펀러닝 보기
+                </button>
+              )}
             </div>
           ))}
         </div>
