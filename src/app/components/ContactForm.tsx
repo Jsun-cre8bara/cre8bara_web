@@ -14,25 +14,66 @@ export function ContactForm() {
     phone: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // FormData를 mailto 링크로 변환
-    const subject = encodeURIComponent(`[${formData.category}] ${formData.name}님의 문의`);
-    const body = encodeURIComponent(
-      `이름: ${formData.name}\n` +
-      `이메일: ${formData.email}\n` +
-      `연락처: ${formData.phone}\n` +
-      `분류: ${formData.category}\n\n` +
-      `문의 내용:\n${formData.message}`
-    );
-    
-    // 이메일 클라이언트 열기
-    window.location.href = `mailto:Cre8bara@gmail.com?subject=${subject}&body=${body}`;
-    
-    toast.success('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-    setFormData({ category: '', name: '', email: '', phone: '', message: '' });
+    // 유효성 검사
+    if (!formData.category || !formData.name || !formData.email || !formData.phone || !formData.message) {
+      toast.error('모든 필드를 입력해주세요.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // 프로덕션 환경에서는 상대 경로, 개발 환경에서는 절대 경로 또는 프록시 사용
+      const apiUrl = '/api/contact';
+      
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // 응답이 JSON이 아닌 경우 처리
+      let data;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(`서버 응답 오류: ${text || response.statusText}`);
+      }
+
+      if (response.ok) {
+        toast.success('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+        // 폼 초기화
+        setFormData({ category: '', name: '', email: '', phone: '', message: '' });
+      } else {
+        // 더 구체적인 에러 메시지 표시
+        const errorMsg = data.error || '오류가 발생했습니다. 다시 시도해주세요.';
+        const detailsMsg = data.details ? `\n상세: ${data.details}` : '';
+        toast.error(errorMsg + detailsMsg);
+        console.error('API Error:', data);
+      }
+    } catch (error: any) {
+      console.error('Submit error:', error);
+      
+      // 더 구체적인 에러 메시지
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        toast.error('API 서버에 연결할 수 없습니다. 배포 환경에서만 작동합니다.');
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -57,10 +98,10 @@ export function ContactForm() {
                   <SelectValue placeholder="선택하세요" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="general">일반 문의</SelectItem>
-                  <SelectItem value="service">서비스 문의</SelectItem>
-                  <SelectItem value="support">기술 지원</SelectItem>
-                  <SelectItem value="partnership">파트너십</SelectItem>
+                  <SelectItem value="일반 문의">일반 문의</SelectItem>
+                  <SelectItem value="서비스 문의">서비스 문의</SelectItem>
+                  <SelectItem value="기술 지원">기술 지원</SelectItem>
+                  <SelectItem value="파트너십">파트너십</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -73,6 +114,7 @@ export function ContactForm() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="홍길동"
                 required
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -87,6 +129,7 @@ export function ContactForm() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="example@email.com"
                 required
+                disabled={isSubmitting}
               />
             </div>
             
@@ -99,6 +142,7 @@ export function ContactForm() {
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="010-1234-5678"
                 required
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -112,11 +156,16 @@ export function ContactForm() {
               placeholder="문의하실 내용을 작성해주세요"
               rows={6}
               required
+              disabled={isSubmitting}
             />
           </div>
           
-          <Button type="submit" className="w-full">
-            문의하기
+          <Button 
+            type="submit" 
+            className="w-full" 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? '전송 중...' : '문의하기'}
           </Button>
         </form>
       </div>
