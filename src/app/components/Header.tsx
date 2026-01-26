@@ -17,6 +17,7 @@ export function Header() {
             <a href="#services" className="text-gray-600 hover:text-gray-900 transition">Services</a>
             <a href="#portfolio" className="text-gray-600 hover:text-gray-900 transition">Portfolio</a>
             <a href="#tools" className="text-gray-600 hover:text-gray-900 transition">TCATS</a>
+            <a href="/funrunning" className="text-gray-600 hover:text-gray-900 transition">FunRunning</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900 transition">Contact</a>
           </nav>
           
