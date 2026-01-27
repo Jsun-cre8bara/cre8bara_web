@@ -11,10 +11,10 @@ export function Header() {
     <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 cursor-pointer">
             <img src={logoImage} alt="Cre8BARA Logo" className="h-8" />
             <span className="text-gray-600 text-sm hidden sm:block">Working together for Good</span>
-          </div>
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
