@@ -39,7 +39,9 @@ export function HeroSection() {
       
       {/* 텍스트 컨텐츠 */}
       <div className="relative z-10 text-center text-white px-4">
-        <h1 className="text-5xl md:text-6xl mb-6 font-bold">콘텐츠의 NEW 패러다임</h1>
+        <h1 className="text-5xl md:text-6xl mb-6 font-bold">
+          콘텐츠의<br className="md:hidden" /> NEW 패러다임
+        </h1>
         <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
           공연을 커머스로, 러닝을 관광산업으로 연결합니다.<br />
           CRE8BARA와 함께 창조하고 만들어가는 미래를 경험하세요.
