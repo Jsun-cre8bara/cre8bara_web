@@ -63,6 +63,8 @@ const services = [
         콘텐츠를 예측하고 확장하는 플랫폼·데이터 중심 전략을 만듭니다.
       </>
     ),
+    link: '/#tools',
+    linkText: '티켓츠 TCATS',
   },
 ];
 
