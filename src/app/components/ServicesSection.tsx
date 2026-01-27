@@ -1,5 +1,4 @@
 import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 
 const services = [
@@ -47,7 +46,7 @@ const services = [
         사람과 도시를 연결합니다.
       </>
     ),
-    link: '/funrunning',
+    link: 'https://funrunning-8y2jvuh.gamma.site/',
     linkText: '펀러닝 보기',
   },
   {
@@ -90,14 +89,19 @@ export function ServicesSection() {
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
               <div className="text-gray-600 leading-relaxed mb-4 flex-grow">{service.description}</div>
               {service.link && (
-                <Link to={service.link} className="mt-auto">
+                <a 
+                  href={service.link} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto"
+                >
                   <Button 
                     variant="outline" 
                     className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
                   >
                     {service.linkText}
                   </Button>
-                </Link>
+                </a>
               )}
             </div>
           ))}
