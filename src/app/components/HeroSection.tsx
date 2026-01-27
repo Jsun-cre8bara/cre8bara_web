@@ -47,7 +47,9 @@ export function HeroSection() {
         </h1>
         <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
           공연을 커머스로, 러닝을 관광산업으로 연결합니다.<br />
-          CRE8BARA와 함께 창조하고 만들어가는 미래를 경험하세요.
+          CRE8BARA와 함께 창조하고 만들어가는
+          <br className="md:hidden" />
+          미래를 경험하세요.
         </p>
       </div>
 
