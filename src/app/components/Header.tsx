@@ -22,14 +22,12 @@ export function Header() {
             <a href="/#services" className="text-gray-600 hover:text-gray-900 transition">Services</a>
             <a href="/#portfolio" className="text-gray-600 hover:text-gray-900 transition">Portfolio</a>
             <a href="/#tools" className="text-gray-600 hover:text-gray-900 transition">TCATS</a>
-            <a 
-              href="https://funrunning-8y2jvuh.gamma.site/" 
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link 
+              to="/funrunning-view"
               className="text-gray-600 hover:text-gray-900 transition"
             >
               FunRunning
-            </a>
+            </Link>
             <a href="/#contact" className="text-gray-600 hover:text-gray-900 transition">Contact</a>
           </nav>
           
@@ -84,15 +82,13 @@ export function Header() {
             >
               TCATS
             </a>
-            <a 
-              href="https://funrunning-8y2jvuh.gamma.site/" 
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link 
+              to="/funrunning-view"
               className="block py-2 text-gray-600 hover:text-gray-900 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               FunRunning
-            </a>
+            </Link>
             <a 
               href="/#contact" 
               className="block py-2 text-gray-600 hover:text-gray-900 transition"

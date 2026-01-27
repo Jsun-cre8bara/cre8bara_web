@@ -1,5 +1,6 @@
 import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -31,8 +32,9 @@ const services = [
         공연 기반 커머스 모델을 설계합니다.
       </>
     ),
-    link: 'https://homeshoppingcompany-o6xvfo1.gamma.site/',
+    link: '/homeshopping-view',
     linkText: '커머스 퍼포밍 Show',
+    internal: true,
   },
   {
     icon: Route,
@@ -48,8 +50,9 @@ const services = [
         사람과 도시를 연결합니다.
       </>
     ),
-    link: 'https://funrunning-8y2jvuh.gamma.site/',
+    link: '/funrunning-view',
     linkText: '펀러닝 보기',
+    internal: true,
   },
   {
     icon: BarChart3,
@@ -91,19 +94,30 @@ export function ServicesSection() {
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
               <div className="text-gray-600 leading-relaxed mb-4 flex-grow">{service.description}</div>
               {service.link && (
-                <a 
-                  href={service.link} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto"
-                >
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
+                service.internal ? (
+                  <Link to={service.link} className="mt-auto">
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
+                    >
+                      {service.linkText}
+                    </Button>
+                  </Link>
+                ) : (
+                  <a 
+                    href={service.link} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto"
                   >
-                    {service.linkText}
-                  </Button>
-                </a>
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
+                    >
+                      {service.linkText}
+                    </Button>
+                  </a>
+                )
               )}
             </div>
           ))}
