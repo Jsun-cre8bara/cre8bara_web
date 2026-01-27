@@ -18,16 +18,11 @@ export function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="/#about" className="text-gray-600 hover:text-gray-900 transition">About us</a>
+            <Link to="/" className="text-gray-600 hover:text-gray-900 transition">About us</Link>
             <a href="/#services" className="text-gray-600 hover:text-gray-900 transition">Services</a>
-            <a href="/#portfolio" className="text-gray-600 hover:text-gray-900 transition">Portfolio</a>
-            <a href="/#tools" className="text-gray-600 hover:text-gray-900 transition">TCATS</a>
-            <Link 
-              to="/funrunning-view"
-              className="text-gray-600 hover:text-gray-900 transition"
-            >
-              FunRunning
-            </Link>
+            <Link to="/homeshopping-view" className="text-gray-600 hover:text-gray-900 transition">Portfolio</Link>
+            <Link to="/funrunning-view" className="text-gray-600 hover:text-gray-900 transition">FunRunning</Link>
+            <a href="https://www.tcats.kr/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition">TCATS</a>
             <a href="/#contact" className="text-gray-600 hover:text-gray-900 transition">Contact</a>
           </nav>
           
@@ -54,13 +49,13 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-3">
-            <a 
-              href="/#about" 
+            <Link 
+              to="/"
               className="block py-2 text-gray-600 hover:text-gray-900 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               About us
-            </a>
+            </Link>
             <a 
               href="/#services" 
               className="block py-2 text-gray-600 hover:text-gray-900 transition"
@@ -68,20 +63,13 @@ export function Header() {
             >
               Services
             </a>
-            <a 
-              href="/#portfolio" 
+            <Link 
+              to="/homeshopping-view"
               className="block py-2 text-gray-600 hover:text-gray-900 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Portfolio
-            </a>
-            <a 
-              href="/#tools" 
-              className="block py-2 text-gray-600 hover:text-gray-900 transition"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              TCATS
-            </a>
+            </Link>
             <Link 
               to="/funrunning-view"
               className="block py-2 text-gray-600 hover:text-gray-900 transition"
@@ -89,6 +77,15 @@ export function Header() {
             >
               FunRunning
             </Link>
+            <a 
+              href="https://www.tcats.kr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2 text-gray-600 hover:text-gray-900 transition"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              TCATS
+            </a>
             <a 
               href="/#contact" 
               className="block py-2 text-gray-600 hover:text-gray-900 transition"
