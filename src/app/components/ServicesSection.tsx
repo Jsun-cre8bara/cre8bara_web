@@ -15,6 +15,9 @@ const services = [
         CRE8BARA의 오리지널 세계관
       </>
     ),
+    link: '/homeshopping-view',
+    linkText: '홈쇼핑주식회사',
+    internal: true,
   },
   {
     icon: Music,
