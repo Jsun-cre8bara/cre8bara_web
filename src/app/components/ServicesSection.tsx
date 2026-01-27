@@ -1,4 +1,6 @@
 import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from './ui/button';
 
 const services = [
   {
@@ -45,6 +47,8 @@ const services = [
         사람과 도시를 연결합니다.
       </>
     ),
+    link: '/funrunning',
+    linkText: '펀러닝 보기',
   },
   {
     icon: BarChart3,
@@ -78,13 +82,23 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
                 <service.icon className="w-6 h-6 text-orange-500" />
               </div>
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <div className="text-gray-600 leading-relaxed">{service.description}</div>
+              <div className="text-gray-600 leading-relaxed mb-4 flex-grow">{service.description}</div>
+              {service.link && (
+                <Link to={service.link} className="mt-auto">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
+                  >
+                    {service.linkText}
+                  </Button>
+                </Link>
+              )}
             </div>
           ))}
         </div>

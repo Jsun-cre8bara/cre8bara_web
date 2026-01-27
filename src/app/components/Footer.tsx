@@ -16,10 +16,10 @@ export function Footer() {
           <div>
             <h4 className="mb-4">빠른 링크</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#about" className="text-gray-400 hover:text-white transition">회사 소개</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-white transition">서비스</a></li>
-              <li><a href="#portfolio" className="text-gray-400 hover:text-white transition">포트폴리오</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-white transition">문의하기</a></li>
+              <li><a href="/#about" className="text-gray-400 hover:text-white transition">회사 소개</a></li>
+              <li><a href="/#services" className="text-gray-400 hover:text-white transition">서비스</a></li>
+              <li><a href="/#portfolio" className="text-gray-400 hover:text-white transition">포트폴리오</a></li>
+              <li><a href="/#contact" className="text-gray-400 hover:text-white transition">문의하기</a></li>
             </ul>
           </div>
           
