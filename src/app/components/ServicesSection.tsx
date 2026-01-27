@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 const services = [
   {
     icon: Sparkles,
-    title: 'Original Idea',
+    title: 'Original IP',
     description: (
       <>
         아이디어에서 글로벌 IP로
         <br />
-        무대에서 플랫폼까지 확장되는
+        무대에서 플랫폼까지 확장된
         <br />
-        CRE8BARA의 오리지널 세계관
+        CRE8BARA의 세계관을 경험하세요.
       </>
     ),
     link: '/homeshopping-view',
