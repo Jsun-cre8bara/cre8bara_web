@@ -31,6 +31,8 @@ const services = [
         공연 기반 커머스 모델을 설계합니다.
       </>
     ),
+    link: 'https://homeshoppingcompany-o6xvfo1.gamma.site/',
+    linkText: '커머스 퍼포밍 Show',
   },
   {
     icon: Route,
