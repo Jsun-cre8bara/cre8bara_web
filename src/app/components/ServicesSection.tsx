@@ -8,13 +8,11 @@ const services = [
     title: 'Original Idea',
     description: (
       <>
-        아이디어를 '될 것'으로 만듭니다
+        아이디어에서 글로벌 IP로
         <br />
-        콘텐츠, 공연, 관광, 플랫폼을 넘나드는
+        무대에서 플랫폼까지 확장되는
         <br />
-        CRE8BARA만의 오리지널 기획과 세계관 설계로
-        <br />
-        없던 시장을 처음부터 만듭니다.
+        CRE8BARA의 오리지널 세계관
       </>
     ),
   },
