@@ -77,10 +77,50 @@ export function ServicesSection() {
     <section id="services" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl mb-4">우리의 서비스</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            고객의 성공을 위해 다양한 전문 서비스를 제공합니다
-          </p>
+          <h2 className="text-4xl mb-4">About 크리에이트바라</h2>
+          <div className="text-gray-600 max-w-4xl mx-auto space-y-4 leading-relaxed">
+            <p>
+              cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
+              <br />
+              ‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
+              <br />
+              공연과 라이브커머스를 결합한 커머스 공연 플랫폼입니다.
+              <br />
+              무대 위에서 스토리와 퍼포먼스로 상품과 문화를 소개하며,
+              <br />
+              해외 관광객 및 글로벌 마켓을 타깃으로 한 K-콘텐츠 수출형 공연 모델로 확장하고 있습니다.
+            </p>
+
+            <p>
+              또한 ‘잇츠 런(It’s Run)’은 펀 러닝(Fun Running)의 한 유형으로,
+              <br />
+              지역 상점·로컬 브랜드와 연계된 미션 러닝을 통해
+              <br />
+              참여형 관광 경험을 제공하고 지역 소비 경제 활성화를 이끄는
+              <br />
+              로컬 관광·체험형 콘텐츠 사업입니다.
+            </p>
+
+            <p>
+              이러한 공연·이벤트를 통해 축적된 관객 및 참여자 데이터는
+              <br />
+              자체 데이터 서비스 ‘티켓츠(tCATS)’로 연결됩니다.
+              <br />
+              티켓츠는 공연·이벤트(러닝) 관람 및 참여 데이터를 기반으로
+              <br />
+              정교한 타겟 마케팅과 관객 분석 서비스를 제공하는
+              <br />
+              공연·이벤트 특화 데이터베이스 플랫폼입니다.
+            </p>
+
+            <p>
+              크리에이트바라는 콘텐츠의 감성과 데이터의 힘을 결합해
+              <br />
+              공연을 넘어 관광, 커머스, 플랫폼으로 확장되는
+              <br />
+              지속 가능한 콘텐츠 비즈니스를 만들어가고 있습니다.
+            </p>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
