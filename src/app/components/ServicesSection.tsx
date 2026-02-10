@@ -54,24 +54,48 @@ export function ServicesSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-            <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
-              <Sparkles className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
-            </span>
-            <h2 className="text-3xl sm:text-4xl leading-tight text-balance">
-              About 크리에이트바라
-            </h2>
-            <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
-              <Sparkles className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
-            </span>
+          {/* Title: mobile wraps to 2 lines to avoid truncation */}
+          <div className="mb-4">
+            <div className="hidden sm:flex items-center justify-center gap-4">
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+                <Sparkles className="w-5 h-5" />
+              </span>
+              <h2 className="text-4xl leading-tight text-balance">About 크리에이트바라</h2>
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+                <Sparkles className="w-5 h-5" />
+              </span>
+            </div>
+
+            <div className="sm:hidden flex items-center justify-center gap-3 px-2">
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-100 text-orange-600 shadow-sm shrink-0">
+                <Sparkles className="w-5 h-5" />
+              </span>
+              <h2 className="min-w-0 text-3xl leading-tight text-center text-balance">
+                <span className="block">About</span>
+                <span className="block">크리에이트바라</span>
+              </h2>
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-100 text-orange-600 shadow-sm shrink-0">
+                <Sparkles className="w-5 h-5" />
+              </span>
+            </div>
           </div>
 
           <div className="mx-auto max-w-4xl">
             <div className="h-1 w-16 bg-orange-500/70 rounded-full mx-auto mb-6" />
 
             {/* Scrollable copy container */}
-            <div className="bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-4 sm:px-6 py-5 sm:py-6 text-gray-700">
-              <div className="max-h-[360px] sm:max-h-[420px] overflow-y-auto pr-2 text-[13px] sm:text-sm md:text-base leading-6 sm:leading-relaxed space-y-4 sm:space-y-5 text-left md:text-center">
+            <div className="relative">
+              {/* Desktop-only decorative background behind the scroll box */}
+              <div className="hidden md:block absolute -inset-10 -z-10 rounded-[32px] overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-30 scale-110 blur-[1px]"
+                  style={{ backgroundImage: `url(${aboutBg})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/65 to-white/75" />
+              </div>
+
+              <div className="relative bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-4 sm:px-6 py-5 sm:py-6 text-gray-700">
+                <div className="max-h-[360px] sm:max-h-[420px] overflow-y-auto pr-2 text-[13px] sm:text-sm md:text-base leading-6 sm:leading-relaxed space-y-4 sm:space-y-5 text-left md:text-center">
                 <p className="break-keep whitespace-normal md:whitespace-pre-line">
                   cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
                   {'\n'}‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
@@ -100,6 +124,7 @@ export function ServicesSection() {
                   {'\n'}공연을 넘어 관광, 커머스, 플랫폼으로 확장되는
                   {'\n'}지속 가능한 콘텐츠 비즈니스를 만들어가고 있습니다.
                 </p>
+                </div>
               </div>
             </div>
           </div>
