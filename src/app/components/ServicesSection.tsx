@@ -1,6 +1,7 @@
 import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
+import aboutBg from '../../assets/H_img03.png';
 
 const services = [
   {
@@ -74,52 +75,64 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="relative py-20 overflow-hidden">
+      {/* Background image (subtle) */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url(${aboutBg})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/90 to-white/95" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl mb-4">About 크리에이트바라</h2>
-          <div className="text-gray-600 max-w-4xl mx-auto space-y-4 leading-relaxed">
-            <p>
-              cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
-              <br />
-              ‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
-              <br />
-              공연과 라이브커머스를 결합한 커머스 공연 플랫폼입니다.
-              <br />
-              무대 위에서 스토리와 퍼포먼스로 상품과 문화를 소개하며,
-              <br />
-              해외 관광객 및 글로벌 마켓을 타깃으로 한 K-콘텐츠 수출형 공연 모델로 확장하고 있습니다.
-            </p>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+              <Sparkles className="w-5 h-5" />
+            </span>
+            <h2 className="text-4xl">About 크리에이트바라</h2>
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+              <Sparkles className="w-5 h-5" />
+            </span>
+          </div>
 
-            <p>
-              또한 ‘잇츠 런(It’s Run)’은 펀 러닝(Fun Running)의 한 유형으로,
-              <br />
-              지역 상점·로컬 브랜드와 연계된 미션 러닝을 통해
-              <br />
-              참여형 관광 경험을 제공하고 지역 소비 경제 활성화를 이끄는
-              <br />
-              로컬 관광·체험형 콘텐츠 사업입니다.
-            </p>
+          <div className="mx-auto max-w-4xl">
+            <div className="h-1 w-16 bg-orange-500/70 rounded-full mx-auto mb-6" />
 
-            <p>
-              이러한 공연·이벤트를 통해 축적된 관객 및 참여자 데이터는
-              <br />
-              자체 데이터 서비스 ‘티켓츠(tCATS)’로 연결됩니다.
-              <br />
-              티켓츠는 공연·이벤트(러닝) 관람 및 참여 데이터를 기반으로
-              <br />
-              정교한 타겟 마케팅과 관객 분석 서비스를 제공하는
-              <br />
-              공연·이벤트 특화 데이터베이스 플랫폼입니다.
-            </p>
+            {/* Scrollable copy container */}
+            <div className="bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-6 py-6 text-gray-700">
+              <div className="max-h-[420px] overflow-y-auto pr-2 text-sm md:text-base leading-relaxed space-y-5">
+                <p className="whitespace-pre-line">
+                  cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
+                  {'\n'}‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
+                  {'\n'}공연과 라이브커머스를 결합한 커머스 공연 플랫폼입니다.
+                  {'\n'}무대 위에서 스토리와 퍼포먼스로 상품과 문화를 소개하며,
+                  {'\n'}해외 관광객 및 글로벌 마켓을 타깃으로 한 K-콘텐츠 수출형 공연 모델로 확장하고 있습니다.
+                </p>
 
-            <p>
-              크리에이트바라는 콘텐츠의 감성과 데이터의 힘을 결합해
-              <br />
-              공연을 넘어 관광, 커머스, 플랫폼으로 확장되는
-              <br />
-              지속 가능한 콘텐츠 비즈니스를 만들어가고 있습니다.
-            </p>
+                <p className="whitespace-pre-line">
+                  또한 ‘잇츠 런(It’s Run)’은 펀 러닝(Fun Running)의 한 유형으로,
+                  {'\n'}지역 상점·로컬 브랜드와 연계된 미션 러닝을 통해
+                  {'\n'}참여형 관광 경험을 제공하고 지역 소비 경제 활성화를 이끄는
+                  {'\n'}로컬 관광·체험형 콘텐츠 사업입니다.
+                </p>
+
+                <p className="whitespace-pre-line">
+                  이러한 공연·이벤트를 통해 축적된 관객 및 참여자 데이터는
+                  {'\n'}자체 데이터 서비스 ‘티켓츠(tCATS)’로 연결됩니다.
+                  {'\n'}티켓츠는 공연·이벤트(러닝) 관람 및 참여 데이터를 기반으로
+                  {'\n'}정교한 타겟 마케팅과 관객 분석 서비스를 제공하는
+                  {'\n'}공연·이벤트 특화 데이터베이스 플랫폼입니다.
+                </p>
+
+                <p className="whitespace-pre-line">
+                  크리에이트바라는 콘텐츠의 감성과 데이터의 힘을 결합해
+                  {'\n'}공연을 넘어 관광, 커머스, 플랫폼으로 확장되는
+                  {'\n'}지속 가능한 콘텐츠 비즈니스를 만들어가고 있습니다.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         
