@@ -6,7 +6,7 @@ import aboutBg from '../../assets/H_img03.png';
 const services = [
   {
     icon: Sparkles,
-    title: 'Original IP',
+    title: 'Original Contents IP',
     description: (
       <>
         아이디어에서 글로벌 IP로,
@@ -22,7 +22,7 @@ const services = [
   },
   {
     icon: Music,
-    title: 'Performance Commerce',
+    title: 'Commerce Performing',
     description: (
       <>
         공연이 끝나도 경험은
