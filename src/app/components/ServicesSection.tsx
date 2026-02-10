@@ -22,7 +22,7 @@ const services = [
   },
   {
     icon: Music,
-    title: 'Commerce Performing',
+    title: 'Performing Commerce',
     description: (
       <>
         공연이 끝나도 경험은
@@ -102,8 +102,8 @@ export function ServicesSection() {
 
             {/* Scrollable copy container */}
             <div className="bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-6 py-6 text-gray-700">
-              <div className="max-h-[420px] overflow-y-auto pr-2 text-sm md:text-base leading-relaxed space-y-5">
-                <p className="whitespace-pre-line">
+              <div className="max-h-[420px] overflow-y-auto pr-2 text-sm md:text-base leading-relaxed space-y-5 text-left md:text-center">
+                <p className="break-keep whitespace-normal md:whitespace-pre-line">
                   cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
                   {'\n'}‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
                   {'\n'}공연과 라이브커머스를 결합한 커머스 공연 플랫폼입니다.
@@ -111,14 +111,14 @@ export function ServicesSection() {
                   {'\n'}해외 관광객 및 글로벌 마켓을 타깃으로 한 K-콘텐츠 수출형 공연 모델로 확장하고 있습니다.
                 </p>
 
-                <p className="whitespace-pre-line">
+                <p className="break-keep whitespace-normal md:whitespace-pre-line">
                   또한 ‘잇츠 런(It’s Run)’은 펀 러닝(Fun Running)의 한 유형으로,
                   {'\n'}지역 상점·로컬 브랜드와 연계된 미션 러닝을 통해
                   {'\n'}참여형 관광 경험을 제공하고 지역 소비 경제 활성화를 이끄는
                   {'\n'}로컬 관광·체험형 콘텐츠 사업입니다.
                 </p>
 
-                <p className="whitespace-pre-line">
+                <p className="break-keep whitespace-normal md:whitespace-pre-line">
                   이러한 공연·이벤트를 통해 축적된 관객 및 참여자 데이터는
                   {'\n'}자체 데이터 서비스 ‘티켓츠(tCATS)’로 연결됩니다.
                   {'\n'}티켓츠는 공연·이벤트(러닝) 관람 및 참여 데이터를 기반으로
@@ -126,7 +126,7 @@ export function ServicesSection() {
                   {'\n'}공연·이벤트 특화 데이터베이스 플랫폼입니다.
                 </p>
 
-                <p className="whitespace-pre-line">
+                <p className="break-keep whitespace-normal md:whitespace-pre-line">
                   크리에이트바라는 콘텐츠의 감성과 데이터의 힘을 결합해
                   {'\n'}공연을 넘어 관광, 커머스, 플랫폼으로 확장되는
                   {'\n'}지속 가능한 콘텐츠 비즈니스를 만들어가고 있습니다.
