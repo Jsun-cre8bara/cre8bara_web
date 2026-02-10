@@ -7,15 +7,8 @@ const services = [
   {
     icon: Sparkles,
     title: 'Original Contents IP',
-    description: (
-      <>
-        아이디어에서 글로벌 IP로,
-        <br />
-        무대에서 플랫폼까지 확장된
-        <br />
-        CRE8BARA의 세계관을 경험하세요.
-      </>
-    ),
+    description:
+      '아이디어에서 글로벌 IP로, 무대에서 플랫폼까지 확장된 CRE8BARA의 세계관을 경험하세요.',
     link: '/homeshopping-view',
     linkText: '홈쇼핑주식회사',
     internal: true,
@@ -23,35 +16,16 @@ const services = [
   {
     icon: Music,
     title: 'Performing Commerce',
-    description: (
-      <>
-        공연이 끝나도 경험은
-        <br />
-        계속됩니다.
-        <br />
-        공연·팬미팅·페스티벌을 굿즈, 티켓, 데이터, 구독으로
-        <br />
-        확장하는 공연 기반 커머스
-        <br />
-        모델을 설계합니다.
-      </>
-    ),
-    link: '/homeshopping-view',
-    linkText: '커머스 퍼포밍 Show',
-    internal: true,
+    description:
+      '공연이 끝나도 경험은 계속됩니다. 공연·팬미팅·페스티벌을 굿즈, 티켓, 데이터, 구독으로 확장하는 공연 기반 커머스 모델을 설계합니다.',
+    link: 'https://another-cat-oy54p4c.gamma.site/',
+    linkText: '퍼포밍 커머스 show',
   },
   {
     icon: Route,
     title: 'Run & Tourism Contents',
-    description: (
-      <>
-        달리면, 도시가 콘텐츠가 됩니다.
-        <br />
-        러닝을 이벤트가 아닌 여행으로, 지역을 무대 삼은
-        <br />
-        러닝×관광×축제 콘텐츠로 사람과 도시를 연결합니다.
-      </>
-    ),
+    description:
+      '달리면, 도시가 콘텐츠가 됩니다. 러닝을 이벤트가 아닌 여행으로, 지역을 무대 삼은 러닝×관광×축제 콘텐츠로 사람과 도시를 연결합니다.',
     link: '/funrunning-view',
     linkText: '펀러닝 보기',
     internal: true,
@@ -59,15 +33,8 @@ const services = [
   {
     icon: BarChart3,
     title: 'Platform & Data Strategy',
-    description: (
-      <>
-        팬과 데이터가 다음 콘텐츠를 만듭니다.
-        <br />
-        티켓, 참여, 이동, 소비 데이터를 기반으로
-        <br />
-        콘텐츠를 예측하고 확장하는 플랫폼·데이터 중심 전략을 만듭니다.
-      </>
-    ),
+    description:
+      '팬과 데이터가 다음 콘텐츠를 만듭니다. 티켓, 참여, 이동, 소비 데이터를 기반으로 콘텐츠를 예측하고 확장하는 플랫폼·데이터 중심 전략을 만듭니다.',
     link: 'https://www.tcats.kr/',
     linkText: '티켓츠 TCATS',
   },
@@ -87,13 +54,15 @@ export function ServicesSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
-              <Sparkles className="w-5 h-5" />
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+              <Sparkles className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
             </span>
-            <h2 className="text-4xl">About 크리에이트바라</h2>
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
-              <Sparkles className="w-5 h-5" />
+            <h2 className="text-3xl sm:text-4xl leading-tight text-balance">
+              About 크리에이트바라
+            </h2>
+            <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+              <Sparkles className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
             </span>
           </div>
 
@@ -101,8 +70,8 @@ export function ServicesSection() {
             <div className="h-1 w-16 bg-orange-500/70 rounded-full mx-auto mb-6" />
 
             {/* Scrollable copy container */}
-            <div className="bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-6 py-6 text-gray-700">
-              <div className="max-h-[420px] overflow-y-auto pr-2 text-sm md:text-base leading-relaxed space-y-5 text-left md:text-center">
+            <div className="bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-4 sm:px-6 py-5 sm:py-6 text-gray-700">
+              <div className="max-h-[360px] sm:max-h-[420px] overflow-y-auto pr-2 text-[13px] sm:text-sm md:text-base leading-6 sm:leading-relaxed space-y-4 sm:space-y-5 text-left md:text-center">
                 <p className="break-keep whitespace-normal md:whitespace-pre-line">
                   cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
                   {'\n'}‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
@@ -146,7 +115,9 @@ export function ServicesSection() {
                 <service.icon className="w-6 h-6 text-orange-500" />
               </div>
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <div className="text-gray-600 leading-relaxed mb-4 flex-grow">{service.description}</div>
+              <p className="text-gray-600 leading-relaxed mb-4 flex-grow break-keep">
+                {service.description}
+              </p>
               {service.link && (
                 service.internal ? (
                   <Link to={service.link} className="mt-auto">
