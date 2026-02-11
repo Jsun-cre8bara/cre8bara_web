@@ -1,7 +1,6 @@
 import { Sparkles, Music, Route, BarChart3 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
-import aboutBg from '../../assets/H_img03.png';
 
 const services = [
   {
@@ -40,91 +39,49 @@ const services = [
   },
 ];
 
+const aboutParagraphs = [
+  `Cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
+Shop on the Stage 를 컨셉으로한  ‘퍼포밍 커머스(Performing Commerce )’ 새로운 콘텐츠 포맷으로, 공연·라이브커머스·관광 소비를 결합한 K-콘텐츠형 커머스 공연 플랫폼입니다.
+무대 위 스토리텔링과 퍼포먼스로 상품과 문화를 ‘경험’하게 만들고, 해외 관광객 및 글로벌 마켓을 타깃으로 한 수출형 공연 모델로 확장하고 있습니다.`,
+  `또한 ‘잇츠 런(It’s Run)’은 펀 러닝(Fun Running) 콘텐츠로,
+지역 상점·로컬 브랜드와 연계한 미션형 러닝을 통해 참여형 관광 경험을 제공하며, 지역 소비경제 활성화를 견인하는 로컬 체험·관광 콘텐츠입니다.`,
+  `이렇게 공연·이벤트 운영 과정에서 축적되는 이용자 구매·참여 데이터는 자체 데이터 서비스 ‘티켓츠(tCATS)’로 연결됩니다.
+티켓츠는 공연·이벤트 참여 데이터를 기반으로 고객 세그먼트 분석, 리텐션 중심 CRM, 타겟 마케팅 인사이트를 제공하는 공연·이벤트 특화 데이터베이스 플랫폼입니다.`,
+  `Cre8BARA는 콘텐츠의 감성(Story/Experience)과 데이터의 힘(Insight/Performance)을 결합해,
+공연을 넘어 관광·커머스·플랫폼으로 확장되는 지속가능한 콘텐츠 비즈니스를 구축하고 있습니다.`,
+];
+
 export function ServicesSection() {
   return (
-    <section id="services" className="relative py-20 overflow-hidden">
-      {/* Background image (subtle) */}
-      <div className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url(${aboutBg})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/90 to-white/95" />
-      </div>
-
+    <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          {/* Title: mobile wraps to 2 lines to avoid truncation */}
-          <div className="mb-4">
-            <div className="hidden sm:flex items-center justify-center gap-4">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
+          {/* Company intro card (recommended: soft lavender/rose gradient) */}
+          <div className="mx-auto max-w-5xl rounded-2xl shadow-md border border-black/5 bg-gradient-to-br from-fuchsia-50 via-rose-50 to-purple-50 px-5 sm:px-10 py-10">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 px-2">
+              <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/70 text-orange-600 shadow-sm shrink-0">
                 <Sparkles className="w-5 h-5" />
               </span>
-              <h2 className="text-4xl leading-tight text-balance">About 크리에이트바라</h2>
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600 shadow-sm">
-                <Sparkles className="w-5 h-5" />
-              </span>
-            </div>
-
-            <div className="sm:hidden flex items-center justify-center gap-3 px-2">
-              <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-100 text-orange-600 shadow-sm shrink-0">
-                <Sparkles className="w-5 h-5" />
-              </span>
-              <h2 className="min-w-0 text-3xl leading-tight text-center text-balance">
-                <span className="block">About</span>
-                <span className="block">크리에이트바라</span>
+              <h2 className="min-w-0 text-3xl sm:text-4xl leading-tight text-center text-balance">
+                <span>About</span>
+                <br className="sm:hidden" />
+                <span className="sm:ml-2">크리에이트바라</span>
               </h2>
-              <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-100 text-orange-600 shadow-sm shrink-0">
+              <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/70 text-orange-600 shadow-sm shrink-0">
                 <Sparkles className="w-5 h-5" />
               </span>
             </div>
-          </div>
 
-          <div className="mx-auto max-w-4xl">
-            <div className="h-1 w-16 bg-orange-500/70 rounded-full mx-auto mb-6" />
+            <div className="h-1 w-16 bg-orange-500/70 rounded-full mx-auto mb-8" />
 
-            {/* Scrollable copy container */}
-            <div className="relative">
-              {/* Desktop-only decorative background behind the scroll box */}
-              <div className="hidden md:block absolute -inset-10 -z-10 rounded-[32px] overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center opacity-30 scale-110 blur-[1px]"
-                  style={{ backgroundImage: `url(${aboutBg})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/65 to-white/75" />
-              </div>
-
-              <div className="relative bg-white/70 backdrop-blur-sm border border-black/5 rounded-2xl shadow-sm px-4 sm:px-6 py-5 sm:py-6 text-gray-700">
-                <div className="max-h-[360px] sm:max-h-[420px] overflow-y-auto pr-2 text-[13px] sm:text-sm md:text-base leading-6 sm:leading-relaxed space-y-4 sm:space-y-5 text-left md:text-center">
-                <p className="break-keep whitespace-normal md:whitespace-pre-line">
-                  cre8BARA의 대표 프로젝트인 ‘홈쇼핑주식회사’는
-                  {'\n'}‘커머스 퍼포밍(Commerce Performing)’이라는 새로운 공연 포맷으로,
-                  {'\n'}공연과 라이브커머스를 결합한 커머스 공연 플랫폼입니다.
-                  {'\n'}무대 위에서 스토리와 퍼포먼스로 상품과 문화를 소개하며,
-                  {'\n'}해외 관광객 및 글로벌 마켓을 타깃으로 한 K-콘텐츠 수출형 공연 모델로 확장하고 있습니다.
-                </p>
-
-                <p className="break-keep whitespace-normal md:whitespace-pre-line">
-                  또한 ‘잇츠 런(It’s Run)’은 펀 러닝(Fun Running)의 한 유형으로,
-                  {'\n'}지역 상점·로컬 브랜드와 연계된 미션 러닝을 통해
-                  {'\n'}참여형 관광 경험을 제공하고 지역 소비 경제 활성화를 이끄는
-                  {'\n'}로컬 관광·체험형 콘텐츠 사업입니다.
-                </p>
-
-                <p className="break-keep whitespace-normal md:whitespace-pre-line">
-                  이러한 공연·이벤트를 통해 축적된 관객 및 참여자 데이터는
-                  {'\n'}자체 데이터 서비스 ‘티켓츠(tCATS)’로 연결됩니다.
-                  {'\n'}티켓츠는 공연·이벤트(러닝) 관람 및 참여 데이터를 기반으로
-                  {'\n'}정교한 타겟 마케팅과 관객 분석 서비스를 제공하는
-                  {'\n'}공연·이벤트 특화 데이터베이스 플랫폼입니다.
-                </p>
-
-                <p className="break-keep whitespace-normal md:whitespace-pre-line">
-                  크리에이트바라는 콘텐츠의 감성과 데이터의 힘을 결합해
-                  {'\n'}공연을 넘어 관광, 커머스, 플랫폼으로 확장되는
-                  {'\n'}지속 가능한 콘텐츠 비즈니스를 만들어가고 있습니다.
-                </p>
-                </div>
+            {/* Mobile: scroll box / Desktop: full copy */}
+            <div className="rounded-xl bg-white/60 backdrop-blur-sm border border-black/5 shadow-sm px-4 sm:px-8 py-6 text-gray-800">
+              <div className="max-h-[420px] overflow-y-auto md:max-h-none md:overflow-visible pr-2 md:pr-0 text-[14px] sm:text-[15px] md:text-base leading-7 md:leading-8 space-y-6 text-left break-keep">
+                {aboutParagraphs.map((p, idx) => (
+                  <p key={idx} className="whitespace-pre-line">
+                    {p}
+                  </p>
+                ))}
               </div>
             </div>
           </div>
