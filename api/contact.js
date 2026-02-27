@@ -155,7 +155,27 @@ async function sendViaResend(payload, contactId) {
     "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
   ]
     .filter(Boolean)
-    .join("\\n");
+    .join("\n");
+
+  const emailHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; line-height: 1.6;">
+      <h2 style="margin: 0 0 12px; padding: 0; color: #111;">새로운 문의가 접수되었습니다</h2>
+      <div style="background: #f6f6f7; border: 1px solid #e7e7ea; border-radius: 12px; padding: 16px; margin: 12px 0;">
+        <div><strong>분류:</strong> ${payload.category}</div>
+        <div><strong>이름:</strong> ${payload.name}</div>
+        <div><strong>이메일:</strong> ${payload.email}</div>
+        <div><strong>연락처:</strong> ${payload.phone}</div>
+      </div>
+      <div style="background: #fff; border: 1px solid #e7e7ea; border-radius: 12px; padding: 16px; margin: 12px 0;">
+        <div style="font-weight: 700; margin-bottom: 8px;">문의 내용</div>
+        <div style="white-space: pre-wrap;">${payload.message}</div>
+      </div>
+      <div style="color: #666; font-size: 12px; margin-top: 16px;">
+        ${contactId ? `문의 ID: ${contactId}<br/>` : ""}
+        접수 시간: ${new Date().toLocaleString("ko-KR")}
+      </div>
+    </div>
+  `;
 
   const resp = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -168,6 +188,7 @@ async function sendViaResend(payload, contactId) {
       to: [adminEmail],
       subject: `[${payload.category}] ${payload.name}님의 문의`,
       text: emailBody,
+      html: emailHtml,
     }),
   });
 
