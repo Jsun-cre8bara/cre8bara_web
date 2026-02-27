@@ -10,39 +10,35 @@ function setCors(res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
-function parseBody(req) {
-  // Vercel may already provide req.body; but we support raw stream too.
-  if (req.body && typeof req.body === "object") return req.body;
-  if (typeof req.body === "string") {
-    try {
-      return JSON.parse(req.body);
-    } catch {
-      return null;
-    }
-  }
-  return null;
-}
-
 async function readJsonBody(req) {
-  const preParsed = parseBody(req);
-  if (preParsed) return preParsed;
-
-  // Fallback: read raw body
-  return await new Promise((resolve) => {
+  // Prefer reading the raw stream to avoid platform body-parsers that may throw (e.g. "Invalid JSON").
+  const raw = await new Promise((resolve) => {
     let raw = "";
     req.on("data", (chunk) => {
       raw += chunk;
     });
     req.on("end", () => {
-      if (!raw) return resolve(null);
-      try {
-        resolve(JSON.parse(raw));
-      } catch {
-        resolve(null);
-      }
+      resolve(raw);
     });
-    req.on("error", () => resolve(null));
+    req.on("error", () => resolve(""));
   });
+
+  if (raw) {
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+
+  // If the runtime already parsed the body, try it, but guard against throwing getters.
+  try {
+    if (req.body && typeof req.body === "object") return req.body;
+  } catch {
+    // ignore
+  }
+
+  return null;
 }
 
 async function saveToSupabase(payload) {
