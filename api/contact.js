@@ -170,8 +170,18 @@ export default async function handler(req, res) {
 
     const payload = { category, name, email, phone, message };
 
-    const dbResult = await saveToSupabase(payload);
-    const emailResult = await sendViaResend(payload, dbResult.ok ? dbResult.id : undefined);
+    let dbResult;
+    let emailResult;
+    try {
+      dbResult = await saveToSupabase(payload);
+    } catch (e) {
+      dbResult = { ok: false, skipped: false, error: String(e && e.message ? e.message : e) };
+    }
+    try {
+      emailResult = await sendViaResend(payload, dbResult && dbResult.ok ? dbResult.id : undefined);
+    } catch (e) {
+      emailResult = { ok: false, skipped: false, error: String(e && e.message ? e.message : e) };
+    }
 
     if (!dbResult.ok && !dbResult.skipped && !emailResult.ok && !emailResult.skipped) {
       return safeJson(res, 500, {
@@ -204,7 +214,13 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     // Last-resort: never crash the function without a JSON response.
-    return safeJson(res, 500, { error: "처리 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요." });
+    return safeJson(res, 500, {
+      error: "처리 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+      details:
+        process.env.NODE_ENV === "production"
+          ? undefined
+          : { message: String(err && err.message ? err.message : err) },
+    });
   }
 }
 
