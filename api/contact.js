@@ -216,10 +216,9 @@ export default async function handler(req, res) {
     // Last-resort: never crash the function without a JSON response.
     return safeJson(res, 500, {
       error: "처리 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
-      details:
-        process.env.NODE_ENV === "production"
-          ? undefined
-          : { message: String(err && err.message ? err.message : err) },
+      details: {
+        message: String(err && err.message ? err.message : err),
+      },
     });
   }
 }
