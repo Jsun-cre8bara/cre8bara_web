@@ -1,5 +1,4 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { fetch as undiciFetch } from 'undici';
 
 type ContactPayload = {
   category: string;
@@ -9,7 +8,7 @@ type ContactPayload = {
   message: string;
 };
 
-const fetchFn: typeof fetch = (globalThis as any).fetch ?? (undiciFetch as any);
+const fetchFn: typeof fetch = (globalThis as any).fetch;
 
 function safeJson(res: VercelResponse, status: number, body: unknown) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -37,6 +36,10 @@ async function saveToSupabase(payload: ContactPayload) {
 
   if (!supabaseUrl || !apikey) {
     return { ok: false as const, skipped: true as const, reason: 'Supabase env missing' };
+  }
+
+  if (!fetchFn) {
+    return { ok: false as const, skipped: true as const, reason: 'fetch not available in runtime' };
   }
 
   const resp = await fetchFn(`${supabaseUrl.replace(/\\/$/, '')}/rest/v1/contacts`, {
@@ -108,6 +111,10 @@ async function sendViaResend(payload: ContactPayload, contactId?: string) {
   ]
     .filter(Boolean)
     .join('\n');
+
+  if (!fetchFn) {
+    return { ok: false as const, skipped: true as const, reason: 'fetch not available in runtime' };
+  }
 
   const resp = await fetchFn('https://api.resend.com/emails', {
     method: 'POST',
