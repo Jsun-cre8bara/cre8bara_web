@@ -10,6 +10,18 @@ function setCors(res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
+function sanitizeResult(r) {
+  if (!r || typeof r !== "object") return r;
+  const out = {};
+  if (typeof r.ok !== "undefined") out.ok = r.ok;
+  if (typeof r.skipped !== "undefined") out.skipped = r.skipped;
+  if (typeof r.reason !== "undefined") out.reason = r.reason;
+  if (typeof r.status !== "undefined") out.status = r.status;
+  if (typeof r.error !== "undefined") out.error = r.error;
+  if (typeof r.id !== "undefined") out.id = r.id;
+  return out;
+}
+
 async function readJsonBody(req) {
   // Prefer reading the raw stream to avoid platform body-parsers that may throw (e.g. "Invalid JSON").
   const raw = await new Promise((resolve) => {
@@ -233,6 +245,10 @@ export default async function handler(req, res) {
       delivery: {
         savedToDb: !!dbResult.ok,
         emailedAdmin: !!emailResult.ok,
+        details: {
+          supabase: dbResult.ok ? undefined : sanitizeResult(dbResult),
+          resend: emailResult.ok ? undefined : sanitizeResult(emailResult),
+        },
       },
     });
   } catch (err) {
