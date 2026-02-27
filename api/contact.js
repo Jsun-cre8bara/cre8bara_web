@@ -28,15 +28,21 @@ async function readJsonBody(req) {
   if (preParsed) return preParsed;
 
   // Fallback: read raw body
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  if (!chunks.length) return null;
-  const raw = Buffer.concat(chunks).toString("utf8");
-  try {
-    return JSON.parse(raw);
-  } catch {
-    return null;
-  }
+  return await new Promise((resolve) => {
+    let raw = "";
+    req.on("data", (chunk) => {
+      raw += chunk;
+    });
+    req.on("end", () => {
+      if (!raw) return resolve(null);
+      try {
+        resolve(JSON.parse(raw));
+      } catch {
+        resolve(null);
+      }
+    });
+    req.on("error", () => resolve(null));
+  });
 }
 
 async function saveToSupabase(payload) {
@@ -52,7 +58,7 @@ async function saveToSupabase(payload) {
     return { ok: false, skipped: true, reason: "fetch not available in runtime" };
   }
 
-  const resp = await fetch(`${supabaseUrl.replace(/\\/$/, "")}/rest/v1/contacts`, {
+  const resp = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/contacts`, {
     method: "POST",
     headers: {
       apikey,
@@ -79,7 +85,9 @@ async function saveToSupabase(payload) {
   } catch {
     inserted = null;
   }
-  const id = Array.isArray(inserted) ? inserted?.[0]?.id : inserted?.id;
+  let id = undefined;
+  if (Array.isArray(inserted) && inserted.length && inserted[0] && inserted[0].id) id = inserted[0].id;
+  else if (inserted && inserted.id) id = inserted.id;
   return { ok: true, id };
 }
 
