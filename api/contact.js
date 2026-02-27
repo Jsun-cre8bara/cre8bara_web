@@ -22,12 +22,13 @@ async function readJsonBody(req) {
     });
     req.on("error", () => resolve(""));
   });
+  const rawLen = raw ? raw.length : 0;
 
   if (raw) {
     try {
-      return JSON.parse(raw);
+      return { body: JSON.parse(raw), debug: { source: "stream", rawLen } };
     } catch {
-      return null;
+      return { body: null, debug: { source: "stream", rawLen, parse: "failed" } };
     }
   }
 
@@ -37,25 +38,26 @@ async function readJsonBody(req) {
     if (!b) return null;
     if (typeof b === "string") {
       try {
-        return JSON.parse(b);
+        return { body: JSON.parse(b), debug: { source: "req.body:string", rawLen: b.length } };
       } catch {
-        return null;
+        return { body: null, debug: { source: "req.body:string", rawLen: b.length, parse: "failed" } };
       }
     }
     // Buffer or Uint8Array-like
     if (typeof Buffer !== "undefined" && Buffer.isBuffer && Buffer.isBuffer(b)) {
       try {
-        return JSON.parse(b.toString("utf8"));
+        const s = b.toString("utf8");
+        return { body: JSON.parse(s), debug: { source: "req.body:buffer", rawLen: s.length } };
       } catch {
-        return null;
+        return { body: null, debug: { source: "req.body:buffer", parse: "failed" } };
       }
     }
-    if (typeof b === "object") return b;
+    if (typeof b === "object") return { body: b, debug: { source: "req.body:object" } };
   } catch {
     // ignore
   }
 
-  return null;
+  return { body: null, debug: { source: "none", rawLen } };
 }
 
 async function saveToSupabase(payload) {
@@ -174,11 +176,19 @@ export default async function handler(req, res) {
       return safeJson(res, 405, { error: "Method not allowed" });
     }
 
-    const body = await readJsonBody(req);
+    const parsed = await readJsonBody(req);
+    const body = parsed && parsed.body ? parsed.body : null;
     const { category, name, email, phone, message } = body || {};
 
     if (!category || !name || !email || !phone || !message) {
-      return safeJson(res, 400, { error: "모든 필드를 입력해주세요." });
+      return safeJson(res, 400, {
+        error: "모든 필드를 입력해주세요.",
+        debug: {
+          contentType: req.headers && req.headers["content-type"],
+          contentLength: req.headers && req.headers["content-length"],
+          parsed: parsed ? parsed.debug : undefined,
+        },
+      });
     }
 
     const payload = { category, name, email, phone, message };
