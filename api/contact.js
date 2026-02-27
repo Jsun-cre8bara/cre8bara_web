@@ -127,7 +127,8 @@ async function sendViaResend(payload, contactId) {
     return { ok: false, skipped: true, reason: "fetch not available in runtime" };
   }
 
-  const adminEmail = process.env.ADMIN_EMAIL || "cre8bara@gmail.com";
+  // Default admin inbox (can be overridden by Vercel env ADMIN_EMAIL)
+  const adminEmail = process.env.ADMIN_EMAIL || "cre8bara@gamil.com";
   const fromEmail = process.env.FROM_EMAIL || "Cre8BARA <onboarding@resend.dev>";
 
   const emailBody = [
@@ -216,6 +217,26 @@ export default async function handler(req, res) {
       emailResult = await sendViaResend(payload, dbResult && dbResult.ok ? dbResult.id : undefined);
     } catch (e) {
       emailResult = { ok: false, skipped: false, error: String(e && e.message ? e.message : e) };
+    }
+
+    // If email isn't delivered, surface a clear error (메일 발송이 핵심 요구사항이므로).
+    if (!emailResult.ok) {
+      if (emailResult.skipped && emailResult.reason === "RESEND_API_KEY missing") {
+        return safeJson(res, 500, {
+          error: "메일 발송 설정 오류: RESEND_API_KEY가 설정되지 않았습니다.",
+          details: {
+            resend: sanitizeResult(emailResult),
+            requiredEnv: ["RESEND_API_KEY", "FROM_EMAIL(권장)", "ADMIN_EMAIL(권장)"],
+          },
+        });
+      }
+
+      return safeJson(res, 500, {
+        error: "메일 발송 실패",
+        details: {
+          resend: sanitizeResult(emailResult),
+        },
+      });
     }
 
     if (!dbResult.ok && !dbResult.skipped && !emailResult.ok && !emailResult.skipped) {
