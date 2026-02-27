@@ -33,7 +33,24 @@ async function readJsonBody(req) {
 
   // If the runtime already parsed the body, try it, but guard against throwing getters.
   try {
-    if (req.body && typeof req.body === "object") return req.body;
+    const b = req.body;
+    if (!b) return null;
+    if (typeof b === "string") {
+      try {
+        return JSON.parse(b);
+      } catch {
+        return null;
+      }
+    }
+    // Buffer or Uint8Array-like
+    if (typeof Buffer !== "undefined" && Buffer.isBuffer && Buffer.isBuffer(b)) {
+      try {
+        return JSON.parse(b.toString("utf8"));
+      } catch {
+        return null;
+      }
+    }
+    if (typeof b === "object") return b;
   } catch {
     // ignore
   }
